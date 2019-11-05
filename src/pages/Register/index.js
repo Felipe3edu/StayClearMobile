@@ -40,8 +40,8 @@ function Register(props) {
     </Text>
     </TouchableOpacity>               
     <TouchableOpacity style={styles.button}>
-        <Text>Return</Text>
-        <Icon name="arrow-back" color="#666" style={styles.iconStyle}/>
+    <Text>Return</Text>
+    <Icon name="arrow-back" color="#666" style={styles.iconStyle}/>
     </TouchableOpacity>
 
     </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2f3236',
         alignItems: 'center',
         borderRadius: 5,
-        padding: 20
+        padding: 15
 
     },
     picker: {

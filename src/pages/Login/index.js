@@ -2,9 +2,8 @@ import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 
 import background from '../../assets/BG.jpg' //Imagem de fundo
-import logo from '../../assets/logo.png'
-
-import Icon from 'react-native-vector-icons/MaterialIcons' 
+import logo from '../../assets/logo.png' //Logo
+import Icon from 'react-native-vector-icons/MaterialIcons' //Icones 
 
 function Login( props ) {
     console.log( props )
