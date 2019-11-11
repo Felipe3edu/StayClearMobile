@@ -1,9 +1,12 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 
-import background from '../../assets/BG.jpg' //Imagem de fundo
-import logo from '../../assets/logo.png' //Logo
-import Icon from 'react-native-vector-icons/MaterialIcons' //Icones 
+//Imagem de fundo
+import background from '../../assets/BG.jpg' 
+
+//Logo
+import logo from '../../assets/logo.png' 
+import Icon from 'react-native-vector-icons/MaterialIcons'  
 
 function Login( props ) {
     console.log( props )
@@ -16,21 +19,21 @@ function Login( props ) {
                 <View style ={styles.viewLogin}>
                 <View>
                 <Icon name="email" color="#fff" style={styles.iconStyle}/>
-                <TextInput placeholder='Digite seu e-mail' placeholderTextColor='#fff' style={styles.input} />
+                <TextInput placeholder='E-mail ' placeholderTextColor='#fff' style={styles.input} />
                 </View>
                 
                 <View style={styles.viewPassword}>
                 <Icon name="lock" color="#fff" style={styles.iconStyle}/>
-                <TextInput placeholder='Digite sua senha' placeholderTextColor='#fff' style={styles.input} />
+                <TextInput placeholder='Password' placeholderTextColor='#fff' style={styles.input} />
                 </View>
                 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Perfil')}>
                 <Text>Login</Text>
                 <Icon name="arrow-forward" color="#666" style={styles.iconStyle}/>
                 </TouchableOpacity>
                  
                 <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Register')}>
-                <Text>Cadastrar</Text>
+                <Text>Register</Text>
                 <Icon name="person-add" color="#666" style={styles.iconStyle}/>
                 </TouchableOpacity>
 
@@ -42,6 +45,7 @@ function Login( props ) {
 }
 
 //Nossos estilos de páginas
+
 const styles = StyleSheet.create({
     background: {
         flex: 1,
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
         paddingLeft:30,
         borderBottomColor: '#fff',
         borderBottomWidth: 1,
+    
     },
     button: {
         backgroundColor: '#fff',

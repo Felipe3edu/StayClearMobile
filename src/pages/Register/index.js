@@ -27,7 +27,7 @@ function Register(props) {
     <TextInput style={styles.input} placeholder="Name" />
     <TextInput style={styles.input} placeholder="E-Mail" />
     <TextInput style={styles.input} placeholder="Password" />
-    <View style={styles.picker}>
+    <View      style={styles.picker}>
     <Picker>
     <Picker.Item label="Desenvolvedor" value="desenvolvedor" />
     <Picker.Item label="Professor" value="professor" />
@@ -35,13 +35,12 @@ function Register(props) {
     </Picker>
     </View>
     <TouchableOpacity style={styles.button}>
-    <Text style={styles.textRegister}>
+    <Text             style={styles.textRegister}>
         Register
     </Text>
     </TouchableOpacity>               
-    <TouchableOpacity style={styles.button}>
-    <Text>Return</Text>
-    <Icon name="arrow-back" color="#666" style={styles.iconStyle}/>
+    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Login')}>
+    <Icon name="arrow-back" color="#fff" style={styles.iconStyle }/>
     </TouchableOpacity>
 
     </View>
@@ -87,11 +86,13 @@ const styles = StyleSheet.create({
     textRegister: {
         color: '#fff',
         alignItems: 'center'
-    }
+    },
+    iconStyle:{
+        fontSize:20,
+    },
 
 })
 export default Register
 
 
 
-// GIT
