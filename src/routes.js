@@ -13,15 +13,17 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Perfil from './pages/Perfil'
 import AddFriends from './pages/Addfriends'
+import Conversations from './pages/Conversations'
 
 const routes = createAppContainer(
     createSwitchNavigator({
         Perfil,
         Login,
         Register,
-        AddFriends
+        AddFriends,
+        Conversations,
     },{
-        initialRouteName :'AddFriends'
+        initialRouteName :'Conversations'
     })
     
 )
