@@ -1,15 +1,25 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { View, Text, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 
 //Imagem de fundo
 import background from '../../assets/BG.jpg' 
 
-//Logo
+
 import logo from '../../assets/logo.png' 
 import Icon from 'react-native-vector-icons/MaterialIcons'  
 
-function Login( props ) {
-    console.log( props )
+class Login extends Component{
+
+    state ={
+        Login:'',
+        Password:''
+    }
+
+    handleSubmit =() =>{
+        console.log(this.state)
+    }
+
+  render(){
     return(
         <ImageBackground source={background} style={styles.background}>
             <Image source={logo} />
@@ -18,30 +28,32 @@ function Login( props ) {
             
                 <View style ={styles.viewLogin}>
                 <View>
-                <Icon name="email" color="#fff" style={styles.iconStyle}/>
-                <TextInput placeholder='E-mail ' placeholderTextColor='#fff' style={styles.input} />
+                <Icon name="email" color="#fff" style={styles.iconStyle} />
+                <TextInput placeholder='E-mail ' 
+                placeholderTextColor='#fff' style={styles.input} 
+                onChangeText ={(Text) => this.setState({email:text})}
+                />
                 </View>
                 
                 <View style={styles.viewPassword}>
                 <Icon name="lock" color="#fff" style={styles.iconStyle}/>
-                <TextInput placeholder='Password' placeholderTextColor='#fff' style={styles.input} />
+                <TextInput placeholder='Password' 
+                placeholderTextColor='#fff' style={styles.input} 
+                onChangeText ={(Text) => this.setState({Password:text})}
+                />
                 </View>
                 
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Perfil')}>
+                <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
                 <Text>Login</Text>
-                <Icon name="arrow-forward" color="#666" style={styles.iconStyle}/>
                 </TouchableOpacity>
                  
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Register')}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Register')}>
                 <Text>Register</Text>
-                <Icon name="person-add" color="#666" style={styles.iconStyle}/>
                 </TouchableOpacity>
-
-
-
             </View>
         </ImageBackground>
-    )
+        )
+    }
 }
 
 //Nossos estilos de páginas

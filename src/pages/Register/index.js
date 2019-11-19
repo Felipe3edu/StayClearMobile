@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component}from 'react'
 import {
     View,
     Text,
@@ -12,42 +12,62 @@ import {
 } from 'react-native'
 import background from '../../assets/BG.jpg'
 import logo from '../../assets/logo.png'
-import Icon from 'react-native-vector-icons/MaterialIcons' 
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-function Register(props) {
-    return (
-        <ScrollView>
-            <ImageBackground source={background} style={styles.background}>
-                <Image source={logo} style={styles.logotipo} />
-                <View style={styles.viewRegister}>
+class Register extends Component {
+    state = {
+        name:     '',
+        email:    '',
+        password: '',
+        category: '',
+    }
+    render() {
+        return (
+            <ScrollView>
+                <ImageBackground source={background} style={styles.background}>
+                    <Image source={logo} style={styles.logotipo} />
+                    <View style={styles.viewRegister}>
 
-
-
-
-    <TextInput style={styles.input} placeholder="Name" />
-    <TextInput style={styles.input} placeholder="E-Mail" />
-    <TextInput style={styles.input} placeholder="Password" />
-    <View      style={styles.picker}>
-    <Picker>
-    <Picker.Item label="Desenvolvedor" value="desenvolvedor" />
-    <Picker.Item label="Professor" value="professor" />
-    <Picker.Item label="Outros" value="outros" />
-    </Picker>
-    </View>
-    <TouchableOpacity style={styles.button}>
-    <Text             style={styles.textRegister}>
-        Register
+                        <TextInput style={styles.input} 
+                        placeholder="Name" 
+                        onChangeText ={(Text) => this.setState({name:text})}
+                        />
+                        <TextInput style={styles.input} 
+                        placeholder="E-Mail" 
+                        onChangeText ={(Text) => this.setState({email:text})}
+                        />
+                        <TextInput style={styles.input} 
+                        placeholder="Password" 
+                        onChangeText ={(Text) => this.setState({Password:text})}
+                        />
+                        <View style={styles.picker}>
+                            <Picker>
+                                <Picker.Item label="Desenvolvedor" value="desenvolvedor" 
+                                onChangeText ={(Text) => this.setState({category:text})}
+                                />
+                                <Picker.Item label="Professor" value="professor" 
+                                onChangeText ={(Text) => this.setState({category:text})}
+                                />
+                                <Picker.Item label="Outros" value="outros" 
+                                onChangeText ={(Text) => this.setState({category:text})}
+                                />
+                            </Picker>
+                        </View>
+                        <TouchableOpacity style={styles.button}>
+                            <Text style={styles.textRegister}>
+                                Register
     </Text>
-    </TouchableOpacity>               
-    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Login')}>
-    <Icon name="arrow-back" color="#fff" style={styles.iconStyle }/>
-    </TouchableOpacity>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+                            <Icon name="arrow-back" color="#fff" style={styles.iconStyle} />
+                        </TouchableOpacity>
 
-    </View>
-    </ImageBackground>
-    </ScrollView>
+                    </View>
+                </ImageBackground>
+            </ScrollView>
 
-    )
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -87,8 +107,8 @@ const styles = StyleSheet.create({
         color: '#fff',
         alignItems: 'center'
     },
-    iconStyle:{
-        fontSize:20,
+    iconStyle: {
+        fontSize: 20,
     },
 
 })

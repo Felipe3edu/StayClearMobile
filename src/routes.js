@@ -23,7 +23,7 @@ const routes = createAppContainer(
         AddFriends,
         Conversations,
     },{
-        initialRouteName :'Conversations'
+        initialRouteName :'Register'
     })
     
 )
