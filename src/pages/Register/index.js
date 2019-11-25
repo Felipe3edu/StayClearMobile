@@ -1,4 +1,4 @@
-import React,{Component}from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
@@ -8,7 +8,8 @@ import {
     Image,
     TouchableOpacity,
     Picker,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
 import background from '../../assets/BG.jpg'
 import logo from '../../assets/logo.png'
@@ -16,10 +17,17 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 class Register extends Component {
     state = {
-        name:     '',
-        email:    '',
+        name: '',
+        email: '',
         password: '',
         category: '',
+    }
+    handleSubmit=()=>{
+        Alert.alert('= ~ = ~ = ~ User Registered Successfully ~ = ~ = ~ =',
+        `Name:'${this.state.name}
+        'E-Mail:'${this.state.email},
+        'Category:'${this.state.category}`
+        )
     }
     render() {
         return (
@@ -28,32 +36,35 @@ class Register extends Component {
                     <Image source={logo} style={styles.logotipo} />
                     <View style={styles.viewRegister}>
 
-                        <TextInput style={styles.input} 
-                        placeholder="Name" 
-                        onChangeText ={(Text) => this.setState({name:text})}
+                        <TextInput style={styles.input}
+                            placeholder="Name"
+                            onChangeText={(Name) => this.setState({ name:Name })}
                         />
-                        <TextInput style={styles.input} 
-                        placeholder="E-Mail" 
-                        onChangeText ={(Text) => this.setState({email:text})}
+                        <TextInput style={styles.input}
+                            placeholder="E-Mail"
+                            onChangeText={(Email) => this.setState({email :Email})}
                         />
-                        <TextInput style={styles.input} 
-                        placeholder="Password" 
-                        onChangeText ={(Text) => this.setState({Password:text})}
+                        <TextInput 
+                            secureTextEntry={true}
+                            style={styles.input}
+                            placeholder="Password"
+                            onChangeText={(Password) => this.setState({ Password:Password})}
                         />
                         <View style={styles.picker}>
-                            <Picker>
-                                <Picker.Item label="Desenvolvedor" value="desenvolvedor" 
-                                onChangeText ={(Text) => this.setState({category:text})}
+                            <Picker selectedValue={(this.state.category)} onValueChange={(itemValue) =>
+                                    this.setState({ category: itemValue })} >
+                                < Picker.Item label="Desenvolvedor" value="desenvolvedor"
+                               
                                 />
-                                <Picker.Item label="Professor" value="professor" 
-                                onChangeText ={(Text) => this.setState({category:text})}
+                                <Picker.Item label="Professor" value="professor"
+                                    
                                 />
-                                <Picker.Item label="Outros" value="outros" 
-                                onChangeText ={(Text) => this.setState({category:text})}
+                                <Picker.Item label="Outros" value="outros"
+                                    
                                 />
                             </Picker>
                         </View>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} onPress={()=> this.handleSubmit()}>
                             <Text style={styles.textRegister}>
                                 Register
     </Text>
