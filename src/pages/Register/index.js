@@ -14,6 +14,7 @@ import {
 import background from '../../assets/BG.jpg'
 import logo from '../../assets/logo.png'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Axios from 'axios'
 
 class Register extends Component {
     state = {
@@ -22,19 +23,16 @@ class Register extends Component {
         password: '',
         category: '',
     }
-    handleSubmit=()=>{
-        Alert.alert('= ~ = ~ = ~ User Registered Successfully ~ = ~ = ~ =',
-        `Name:'${this.state.name}
-        'E-Mail:'${this.state.email},
-        'Category:'${this.state.category}`
-        )
-    }
+    handleSubmit = async () => {
+        await Axios.post('http://10.51.47.65:3000/users', this.state)
+    }        
     render() {
         return (
             <ScrollView>
                 <ImageBackground source={background} style={styles.background}>
                     <Image source={logo} style={styles.logotipo} />
                     <View style={styles.viewRegister}>
+                        <Text>Teste</Text>
 
                         <TextInput style={styles.input}
                             placeholder="Name"
