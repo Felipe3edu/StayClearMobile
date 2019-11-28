@@ -15,42 +15,61 @@ import background from '../../assets/BG.jpg'
 import logo from '../../assets/logo.png'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Axios from 'axios'
+import Error from '../../components/Error'
 
 class Register extends Component {
     state = {
-        name: '',
-        email: '',
-        password: '',
-        category: '',
-    }
+        user :{
+            name:      '',
+            email:     '',
+         password:     '',
+         category:     '',
+     }, 
+            error:     false,
+            errorText: '',
+
+     }
+            
+
     handleSubmit = async () => {
-        await Axios.post('http://10.51.47.65:3000/users', this.state)
-    }        
+        const {data} = await Axios.post('http://10.51.47.65:3000/users', this.state)
+        
+        //Verifica erros no
+        if (data.error){
+            this.setState({error:true, errorText:data.error})
+        }
+        console.log(response)
+    }
+
     render() {
+        const {error,errorText}=this.state
         return (
             <ScrollView>
                 <ImageBackground source={background} style={styles.background}>
                     <Image source={logo} style={styles.logotipo} />
+                        {/* NOSSO COMPONENTE ERRO*/}
+                        {
+                            error&&
+                            <Error Text={errorText}/>
+                        }
                     <View style={styles.viewRegister}>
-                        <Text>Teste</Text>
-
                         <TextInput style={styles.input}
                             placeholder="Name"
-                            onChangeText={(Name) => this.setState({ name:Name })}
+                            onChangeText={(Name) => this.setState({ user:{...this.state.user, name:Name }})}
                         />
                         <TextInput style={styles.input}
                             placeholder="E-Mail"
-                            onChangeText={(Email) => this.setState({email :Email})}
+                            onChangeText={(Email) => this.setState({ user:{...this.state.user, email:Email }})}
                         />
                         <TextInput 
                             secureTextEntry={true}
                             style={styles.input}
                             placeholder="Password"
-                            onChangeText={(Password) => this.setState({ Password:Password})}
+                            onChangeText={(Password) => this.setState({user:{...this.state.user, password:Password }})}
                         />
                         <View style={styles.picker}>
                             <Picker selectedValue={(this.state.category)} onValueChange={(itemValue) =>
-                                    this.setState({ category: itemValue })} >
+                                    this.setState({ user:{...this.state.user, category: itemValue}})}>
                                 < Picker.Item label="Desenvolvedor" value="desenvolvedor"
                                
                                 />
@@ -101,7 +120,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2f3236',
         alignItems: 'center',
         borderRadius: 5,
-        padding: 15
+        padding: 14
 
     },
     picker: {

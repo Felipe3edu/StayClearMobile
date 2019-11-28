@@ -3,7 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, TextInput, TouchableOpacity, I
 
 //Imagem de fundo
 import background from '../../assets/BG.jpg' 
-
+import Error from '../../components/Error'
 
 import logo from '../../assets/logo.png' 
 import Icon from 'react-native-vector-icons/MaterialIcons'  
