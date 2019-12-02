@@ -10,7 +10,7 @@ import {
     Picker,
     ScrollView,
     Alert
-} from 'react-native'
+    } from 'react-native'
 import background from '../../assets/BG.jpg'
 import logo from '../../assets/logo.png'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -25,9 +25,8 @@ class Register extends Component {
          password:     '',
          category:     '',
      }, 
-            error:     false,
             errorText: '',
-
+            error:     false,          
      }
             
 
