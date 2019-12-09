@@ -4,13 +4,20 @@ import background from '../../assets/BG.jpg'
 import profile from '../../assets/PF.png'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import ImagePicker from 'react-native-image-picker'
-
+import axios from 'axios'
+import AssyncStorege from '@react-native-community/async-storage'
 
 // State
 class Perfil extends React.Component {
     state = {
-        photo: '' //Armazenar o caminho do nosso avatar
+        //Armazenar o caminho do nosso avatar
+        photo: '',
+        description:'',
     }
+
+        componentDidMount(){
+            const user = AssyncStorege.getItem('user')
+        }
 
     // Imagen de Perfil
     ChooseAvatar() {
@@ -33,6 +40,10 @@ class Perfil extends React.Component {
             }
         });
 
+    }
+
+    handleSubmit(){
+        const {data} = await Axios.post(`http://10.51.47.65:3000/users/${iddoUsuario}`,this.state
     }
 
     render() {
@@ -59,8 +70,9 @@ class Perfil extends React.Component {
                 </Text>
                 <View style={styles.textAreaContainer} >
                     <TextInput
-                        style={styles.textArea}
+                        style={styles.textArea}       
                         underlineColorAndroid="black"
+                        onChangeText={(text) => this.setState({ description: text})}
                         placeholder=""
                         placeholderTextColor="grey"
                         numberOfLines={15}
@@ -69,7 +81,7 @@ class Perfil extends React.Component {
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Login')}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
                         <Icon name="done" color="#fff" style={styles.iconStyle} />
                     </TouchableOpacity>
                 </View>

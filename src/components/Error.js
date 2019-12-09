@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 function Error(props) {
     return (
         <View style={styles.BG}>
-            <Text> {props.Text} </Text>
+            <Text> Invalid User or Password {props.Text} </Text>
         </View>
     )
 }
