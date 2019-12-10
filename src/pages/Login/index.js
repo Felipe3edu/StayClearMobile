@@ -26,11 +26,12 @@ class Login extends Component {
     }
     // dados do Usuario para rota de autenticação
     handleSubmit = async () => {
-        const { data } = await Axios.post('http://10.51.47.65:3000/Auth', {
+        const { data } = await Axios.post('http://10.51.53.137:3000/Auth', {
             email: this.state.Login,
             password: this.state.Password
         })
-
+        
+        console.log(data)
         if (data.token) {
             this.setStorage(data)
             this.props.navigation.navigate('Perfil')

@@ -4,7 +4,7 @@ import background from '../../assets/BG.jpg'
 import profile from '../../assets/PF.png'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import ImagePicker from 'react-native-image-picker'
-import axios from 'axios'
+import Axios from 'axios'
 import AssyncStorege from '@react-native-community/async-storage'
 
 // State
@@ -12,12 +12,19 @@ class Perfil extends React.Component {
     state = {
         //Armazenar o caminho do nosso avatar
         photo: '',
-        description:'',
+        description: '',
+        id: '',
+        token: ''
     }
 
-        componentDidMount(){
-            const user = AssyncStorege.getItem('user')
-        }
+    async componentDidMount() {
+        const user = await AssyncStorege.getItem('user')
+
+        //String to Object
+        const { userExists,token } = JSON.parse(user)
+        //Set User ID in State
+        this.setState({ id: userExists.id, token: token })
+    }
 
     // Imagen de Perfil
     ChooseAvatar() {
@@ -31,7 +38,7 @@ class Perfil extends React.Component {
             } else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
             } else {
-                const source = { uri: response.uri };
+                const source = response.uri
                 console.log(source)
 
                 this.setState({
@@ -42,8 +49,11 @@ class Perfil extends React.Component {
 
     }
 
-    handleSubmit(){
-        const {data} = await Axios.post(`http://10.51.47.65:3000/users/${iddoUsuario}`,this.state
+    async handleSubmit() {
+        const { id, token } = this.state
+        const { data } = await Axios.put(`http://10.51.53.137:3000/users/${id}`, this.state,{
+        Headers: {Authorization: "Bearer " + token}    
+    })
     }
 
     render() {
@@ -58,11 +68,11 @@ class Perfil extends React.Component {
                 <TouchableOpacity onPress={() => this.ChooseAvatar()}>
                     {
                         photo ?
-                        <Image source = {photo} style={styles.image} />
-                        :
-                        <Image source = {profile} style={styles.image} />
+                            <Image source={photo} style={styles.image} />
+                            :
+                            <Image source={profile} style={styles.image} />
                     }
-                    
+
                 </TouchableOpacity>
 
                 <Text>
@@ -70,9 +80,9 @@ class Perfil extends React.Component {
                 </Text>
                 <View style={styles.textAreaContainer} >
                     <TextInput
-                        style={styles.textArea}       
+                        style={styles.textArea}
                         underlineColorAndroid="black"
-                        onChangeText={(text) => this.setState({ description: text})}
+                        onChangeText={(text) => this.setState({ description: text })}
                         placeholder=""
                         placeholderTextColor="grey"
                         numberOfLines={15}
