@@ -14,6 +14,7 @@ import Register from './pages/Register'
 import Perfil from './pages/Perfil'
 import AddFriends from './pages/Addfriends'
 import Conversations from './pages/Conversations'
+import Chat from './pages/Chat'
 
 const routes = createAppContainer(
     createSwitchNavigator({
@@ -22,8 +23,9 @@ const routes = createAppContainer(
         Register,
         AddFriends,
         Conversations,
+        Chat
     },{
-        initialRouteName :'Login'
+        initialRouteName :'Chat'
     })
     
 )
